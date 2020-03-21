@@ -1,0 +1,49 @@
+<!-- ヘッダー -->
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Bookers002</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="slidemenu">
+    <ul class="nav navbar-nav" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
+
+      <% if user_signed_in? %>
+      <li class="">
+        <%= link_to 'Home', users_path %>
+      </li>
+      <li class="">
+        <%= link_to 'User', users_path %>
+      </li>
+      <li class="">
+        <%= link_to 'Books', books_path %>
+      </li>
+      <li class="">
+      <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </li>
+      <li class="">
+      <%= link_to 'マイページ', users_path %>
+      </li>
+
+      <% else %>
+      <li class="">
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li class="">
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <% end %>
+
+    </ul>
+    </div>
+
+    <%= yield %>  <!-- 画面の呼び出し -->
+  </body>
+</html>

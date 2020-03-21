@@ -1,0 +1,16 @@
+<h1>Editing Book</h1>
+<%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
+
+	<p>Title</p>
+	<%= f.text_field :title %>
+	<p>Body</p>
+	<%= f.text_area :opinion %>
+	<br><%= f.submit 'Update Book' %>
+
+<% end %>
+
+<!-- 編集画面にアクセス -->
+<%= link_to "Show", book_path(@book.id) %>
+|
+<!-- 投稿・一覧画面に戻る -->
+<%= link_to 'Back', '/books' %>
