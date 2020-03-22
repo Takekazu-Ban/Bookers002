@@ -65,5 +65,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 # 画像投稿機能実装
+# refileは、ユーザがPC内の画像をアプリケーションにアップロードするgem
 gem "refile", require: "refile/rails", github: 'manfe/refile'
+# アップロード画像のリサイズ
 gem "refile-mini_magick"

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :homes
   # URLにusersを含む
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -10,6 +11,7 @@ Rails.application.routes.draw do
   #root 'books#index'
 
   resources :books, only: [:create, :index, :show, :edit, :destroy, :update]
-  resources :users, only: [:index, :edit, :updete]
+  resources :users, only: [:create, :index, :show, :edit, :destroy, :update]
+  resources :homes, only: [:index]
 
 end

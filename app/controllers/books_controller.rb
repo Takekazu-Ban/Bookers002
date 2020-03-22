@@ -1,10 +1,17 @@
 class BooksController < ApplicationController
 # 投稿・一覧設定
   def index
-     # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
+    # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
     @book = Book.new
+    # ログイン時のbookデータを渡す
+    #@object = current_user.book
      # 全てのデータを取り出して、格納
     @books = Book.all
+
+    # ログイン時のユーザーデータを渡す
+    @user = current_user
+    # 全てのデータを取り出して、格納
+    @users = User.all
   end
 
   # 投稿設定
@@ -71,7 +78,7 @@ class BooksController < ApplicationController
 
   # 投稿データの受け取り
   def book_params
-  	params.require(:book).permit(:title, :opinion)
+  	params.require(:book).permit(:title, :body)
   end
 
 end

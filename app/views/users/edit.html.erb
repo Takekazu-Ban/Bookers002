@@ -1,0 +1,15 @@
+<%= form_for(@user) do |f| %>
+
+<!-- 名前編集 -->
+Name <%= f.text_field :name %>
+
+<!-- プロフィール画像編集 -->
+
+<!-- 自己紹介文 -->
+Introdoction <%= f.text_area :introduction %>
+
+<!-- UPDATEボタン -->
+<%= f.submit "Update User",class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+
+
+<% end %>

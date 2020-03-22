@@ -1,4 +1,7 @@
-<!-- Users -->
+<!-- Home -->
+
+<!-- ログイン中にユーザーのbookの情報を取得する方法 -->
+
 <!-- プロフィール表示部分 -->
 <div class="profile">
   <h2>User info</h2>
@@ -17,9 +20,6 @@
   <br>
   <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
 </div>
-
-
-
 
 
 <!-- 新規投稿部分 -->
@@ -53,63 +53,6 @@
 <% end %>
 
 
-
-
-
-<!-- ユーザーリスト -->
-<div class="all_profile">
-  <h2>Users</h2>
-  <table>
-    <!-- 見出し表示 -->
-    <thead>
-      <tr>
-        <th> image </th>
-        <th></th>
-        <th> name </th>
-      </tr>
-    </thead>
-
-    <table>
-    <% @users.each do |user| %>
-
-     <!-- プロフィール画像 -->
-      <%= attachment_image_tag user, :profile_image_id, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-
-     <!-- 名前 -->
-     <%= user.name %>
-
-    <% end %>
-  </table>
-</div>
-
-
-<!-- ユーザーリスト -->
-<div class="all_profile">
-  <h2>Users</h2>
-  <table>
-    <!-- 見出し表示 -->
-    <thead>
-      <tr>
-        <th> image </th>
-        <th></th>
-        <th> name </th>
-      </tr>
-    </thead>
-
-    <table>
-    <% @users.each do |user| %>
-
-     <!-- プロフィール画像 -->
-      <%= attachment_image_tag user, :profile_image_id, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
-
-     <!-- 名前 -->
-     <%= user.name %>
-
-    <% end %>
-  </table>
-</div>
-
-
 <!-- 一覧表示部分 -->
 <h2>Books</h2>
 <table>
@@ -125,15 +68,11 @@
 
   <!-- 本文表示 -->
   <tbody>
-    <% @books.each do |book| %>
-
     <tr>
-      <td> <%= book.title %> </td>
+      <td> <%= @book.title %> </td>
       <td></td>
-      <td> <%= book.body  %> </td>
+      <td> <%= @book.body  %> </td>
       <td></td>
     </tr>
-
-    <% end %>
   </tbody>
 </table>

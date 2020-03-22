@@ -9,7 +9,7 @@
 <% end %>
 
 
-<p> <%= @book.title %> <%= @book.opinion  %> </p>
+<p> <%= @book.title %> <%= @book.body %> </p>
 
 <!-- 編集画面にアクセス -->
 <%= link_to "Edit", edit_book_path(@book.id) %>
