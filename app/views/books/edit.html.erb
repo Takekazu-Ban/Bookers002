@@ -1,4 +1,8 @@
-<h1>Editing Book</h1>
+<!-- 未着手 -->
+<!-- 投稿確認画面 -->
+
+
+<h1>Editing Book 投稿確認</h1>
 <%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
 
 	<p>Title</p>
@@ -14,3 +18,22 @@
 |
 <!-- 投稿・一覧画面に戻る -->
 <%= link_to 'Back', '/books' %>
+
+
+
+
+<!-- 投稿・更新時にサクセスメッセージ表示 -->
+<% if flash[:notice] %>
+	<div class = "flash">
+		<%= flash[:notice] %>
+	</div>
+<% end %>
+
+
+<p> <%= @book.title %> <%= @book.body %> </p>
+
+<!-- 編集画面にアクセス -->
+<%= link_to "Edit", edit_book_path(@book.id) %>
+
+<!-- 削除 -->
+<%= link_to "Destroy",book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>

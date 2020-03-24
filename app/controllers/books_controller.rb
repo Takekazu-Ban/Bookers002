@@ -3,9 +3,7 @@ class BooksController < ApplicationController
   def index
     # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
     @book = Book.new
-    # ログイン時のbookデータを渡す
-    #@object = current_user.book
-     # 全てのデータを取り出して、格納
+    # 全てのデータを取り出して、格納
     @books = Book.all
 
     # ログイン時のユーザーデータを渡す
@@ -52,8 +50,12 @@ class BooksController < ApplicationController
     book = Book.find(params[:id]) #viewsを通らないので@を付けない
     # DBに上書き
     book.update(book_params)
+
+    # 投稿確認画面へ移動
+    redirect_to edit_book_path(book.id)
+
     # 詳細ページへリダイレクト
-    redirect_to  book_path(book.id)
+    #redirect_to  book_path(book.id)
     # サクセスメッセージ表示
     flash[:notice] = "Book was successfully updated."
   end
@@ -78,7 +80,7 @@ class BooksController < ApplicationController
 
   # 投稿データの受け取り
   def book_params
-  	params.require(:book).permit(:title, :body)
+  	params.require(:book).permit(:title, :body, :profile_image)
   end
 
 end

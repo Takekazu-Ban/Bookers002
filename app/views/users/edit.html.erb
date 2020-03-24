@@ -1,15 +1,17 @@
+<!-- プロフィール編集画面 -->
+
 <%= form_for(@user) do |f| %>
 
 <!-- 名前編集 -->
 Name <%= f.text_field :name %>
-
+<br>
 <!-- プロフィール画像編集 -->
-
+<%= f.attachment_field :profile_image %>
+<br>
 <!-- 自己紹介文 -->
 Introdoction <%= f.text_area :introduction %>
-
+<br>
 <!-- UPDATEボタン -->
 <%= f.submit "Update User",class:"btn btn-lg btn-block btn-base-1 mt-20" %>
-
 
 <% end %>

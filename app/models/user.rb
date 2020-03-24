@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
    # userモデルにbookモデルを1:Nの関連付け
    has_many :books, dependent: :destroy
+   attachment :profile_image
+
 end

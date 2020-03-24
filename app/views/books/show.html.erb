@@ -1,20 +1,7 @@
-<!-- タイトル -->
+<!-- Users → Show -->
 <h2>Book detail</h2>
 
-<!-- 投稿・更新時にサクセスメッセージ表示 -->
-<% if flash[:notice] %>
-	<div class = "flash">
-		<%= flash[:notice] %>
-	</div>
-<% end %>
 
 
-<p> <%= @book.title %> <%= @book.body %> </p>
-
-<!-- 編集画面にアクセス -->
-<%= link_to "Edit", edit_book_path(@book.id) %>
-
-<!-- 削除 -->
-<%= link_to "Destroy",book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>
 
 

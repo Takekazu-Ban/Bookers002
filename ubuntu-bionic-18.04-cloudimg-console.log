@@ -595,4 +595,37 @@ e System...
 
 Ubuntu 18.04.4 LTS ubuntu-bionic ttyS0
 
-ubuntu-bionic login: 
+ubuntu-bionic login: [47687.623485] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[47687.623485]   Tx Queue             <0>
+[47687.623485]   TDH                  <37>
+[47687.623485]   TDT                  <43>
+[47687.623485]   next_to_use          <43>
+[47687.623485]   next_to_clean        <37>
+[47687.623485] buffer_info[next_to_clean]
+[47687.623485]   time_stamp           <100b4cb64>
+[47687.623485]   next_to_watch        <3b>
+[47687.623485]   jiffies              <100b4cc80>
+[47687.623485]   next_to_watch.status <0>
+[47694.172053] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[47694.172053]   Tx Queue             <0>
+[47694.172053]   TDH                  <37>
+[47694.172053]   TDT                  <43>
+[47694.172053]   next_to_use          <43>
+[47694.172053]   next_to_clean        <37>
+[47694.172053] buffer_info[next_to_clean]
+[47694.172053]   time_stamp           <100b4cb64>
+[47694.172053]   next_to_watch        <3b>
+[47694.172053]   jiffies              <100b4d2e6>
+[47694.172053]   next_to_watch.status <0>
+[47695.683920] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[47695.683920]   Tx Queue             <0>
+[47695.683920]   TDH                  <37>
+[47695.683920]   TDT                  <43>
+[47695.683920]   next_to_use          <43>
+[47695.683920]   next_to_clean        <37>
+[47695.683920] buffer_info[next_to_clean]
+[47695.683920]   time_stamp           <100b4cb64>
+[47695.683920]   next_to_watch        <3b>
+[47695.683920]   jiffies              <100b4d460>
+[47695.683920]   next_to_watch.status <0>
+[47696.503890] e1000 0000:00:03.0 enp0s3: Reset adapter
