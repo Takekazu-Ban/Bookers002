@@ -27,21 +27,8 @@ class UsersController < ApplicationController
      	@books = Book.all
 	end
 
-	# アップデート
-	def update
-
-		user = User.find(params[:id])
-		user.update(user_parms)
-		redirect_to user_path(current_user.id)
-		# サクセスメッセージの表示
-		flash[:notice] = "You have updated user successfully."
-	end
-
 	# 編集
 	def edit
-		#@user = User.new(user_params)
-    	#@Users = User.all
-
 		# ユーザー情報取得後、＠userに保存
 		@user = User.find(params[:id])
 	end
@@ -49,8 +36,15 @@ class UsersController < ApplicationController
 	# アップデート
 	def update
 		user = User.find(params[:id])
-		user.update(user_params)
-		redirect_to user_path(user.id)
+		if user.update(user_params)
+		redirect_to user_path(current_user.id)
+		# サクセスメッセージの表示
+		flash[:notice] = "You have updated user successfully."
+		else
+		redirect_to user_path(current_user.id)
+		# エラーメッセージ表示
+		flash[:alert] = "error!!!!"
+		end
 	end
 
 private

@@ -1,7 +1,69 @@
 <!-- Users → Show -->
+<!-- 投稿確認画面 -->
+
+<!-- 投稿・更新時にサクセスメッセージ表示 -->
+  <% if flash[:notice] %>
+    <div class = "flash">
+    <%= flash[:notice] %>
+    </div>
+
+    <% else %>
+     <div class = "flash">
+    <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <h2>Book detail</h2>
 
+<!-- プロフィール表示部分 -->
+<div class="profile">
+  <h2>User info</h2>
+
+  <!-- プロフィール画像 -->
+  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+  <!-- 名前 -->
+  <br>
+  name <%= @user.name %>
+  <!-- 紹介文 -->
+  <br>
+  introduction  <%= @user.introduction %>
+
+  <!-- 編集画面にアクセス -->
+  <br>
+    <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+</div>
 
 
+<!-- 新規投稿部分 -->
+<h2>New book</h2>
+<%= form_for(@book, url: '/books', method: :post) do |f| %>
+
+  <!-- タイトル記入 -->
+  <h5>Title</h5>
+  <%= f.text_field :title %>
+
+  <!-- 本文記入 -->
+  <h5>Opinion</h5>
+  <%= f.text_area :body %>
+
+  <br><%= f.submit 'Create Book' %>
+<% end %>
+
+<br>
+
+<!-- 投稿確認表示 -->
+<%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+<%= @book.title %>
+<%= @book.body %>
+<%= @user.introduction %>
+
+<!-- 編集画面にアクセス -->
+<%= link_to "Edit", edit_book_path(@book.id) %>
+
+<!-- 削除 -->
+<%= link_to "Destroy",book_path, method: :delete, "data-confirm" => "Are you sure?" %>
+
+<br>
+<%= @user.name %>
 
 

@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :homes
+  # devise_for :home
   # URLにusersを含む
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  # ログイン・サインイン後、user一覧画面に移行
-  root 'users#index'
+  # ローカル画面へのルート
+  root 'homes#index'
 
-  # (仮)ログイン・サインイン後、book一覧画面に移行
-  #root 'books#index'
+  get 'home/about' => 'homes#show'
+
 
   resources :books, only: [:create, :index, :show, :edit, :destroy, :update]
-  resources :users, only: [:create, :index, :show, :edit, :destroy, :update]
-  resources :homes, only: [:index]
+  resources :users, only: [:index, :show, :edit, :update]
 
 end

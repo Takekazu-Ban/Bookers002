@@ -629,3 +629,43 @@ ubuntu-bionic login: [47687.623485] e1000 0000:00:03.0 enp0s3: Detected Tx Unit 
 [47695.683920]   jiffies              <100b4d460>
 [47695.683920]   next_to_watch.status <0>
 [47696.503890] e1000 0000:00:03.0 enp0s3: Reset adapter
+[89834.110139] BUG: unable to handle kernel paging request at 0000000300000000
+[89834.129362] IP: 0x300000000
+[89834.132646] PGD 0 P4D 0 
+[89834.150432] Oops: 0010 [#1] SMP PTI
+[89834.155004] Modules linked in: vboxsf isofs crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear aesni_intel mptspi aes_x86_64 crypto_simd scsi_transport_spi cryptd mptscsih glue_helper psmouse mptbase e1000
+[89834.317179] CPU: 1 PID: 9688 Comm: ruby Tainted: G        W        4.15.0-88-generic #88-Ubuntu
+[89834.331601] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[89834.356109] RIP: 0010:0x300000000
+[89834.366386] RSP: 0018:ffffbf0f42837a68 EFLAGS: 00010286
+[89834.372819] RAX: 0000000000000000 RBX: 0000000000000058 RCX: 0000000000738023
+[89834.394176] RDX: 0000000000738022 RSI: ffff9cc67fd260e0 RDI: 0000000000000000
+[89834.413644] RBP: 0000099342837a68 R08: 00000000000260e0 R09: ffffffffc04ff87f
+[89834.435575] R10: fffffaf6c0d8b1c0 R11: 000000000000021a R12: ffffffffc0616ca0
+[89834.449917] R13: ffffbf0f42837ab8 R14: ffff9cc67b77e020 R15: ffff9cc67acf3600
+[89834.468691] FS:  00007f6b65c4a740(0000) GS:ffff9cc67fd00000(0000) knlGS:0000000000000000
+[89834.484749] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[89834.499504] CR2: 0000000300000000 CR3: 000000003b00e000 CR4: 00000000000406e0
+[89834.524629] Call Trace:
+[89834.526771]  ? sf_stat+0x66/0x110 [vboxsf]
+[89834.538915]  ? sf_inode_revalidate+0x8c/0xe0 [vboxsf]
+[89834.546169]  ? __inode_permission+0x5b/0x160
+[89834.552028]  ? __d_lookup+0x109/0x140
+[89834.560818]  ? sf_dentry_revalidate+0x13/0x30 [vboxsf]
+[89834.575768]  ? lookup_fast+0x281/0x320
+[89834.588780]  ? path_init+0x180/0x310
+[89834.599698]  ? path_openat+0x15d/0x1960
+[89834.603322]  ? do_filp_open+0x9b/0x110
+[89834.614228]  ? __check_object_size+0xc8/0x1b0
+[89834.627446]  ? __alloc_fd+0xb2/0x170
+[89834.637375]  ? do_sys_open+0x1bb/0x2c0
+[89834.649759]  ? do_sys_open+0x1bb/0x2c0
+[89834.658768]  ? SyS_openat+0x14/0x20
+[89834.665474]  ? do_syscall_64+0x73/0x130
+[89834.672233]  ? entry_SYSCALL_64_after_hwframe+0x3d/0xa2
+[89834.682584] Code:  Bad RIP value.
+[89834.699479] RIP: 0x300000000 RSP: ffffbf0f42837a68
+[89834.711767] CR2: 0000000300000000
+[89834.722559] ---[ end trace 977ae188f3e5d6a5 ]---
+[118006.341198] 32:46:38.854126 timesync vgsvcTimeSyncWorker: Radical host time change: 2 622 139 000 000ns (HostNow=1 585 056 899 803 000 000 ns HostLast=1 585 054 277 664 000 000 ns)
+[118016.399589] 32:46:48.912533 timesync vgsvcTimeSyncWorker: Radical guest time change: 2 734 631 258 000ns (GuestNow=1 585 056 909 861 468 000 ns GuestLast=1 585 054 175 230 210 000 ns fSetTimeLastLoop=true )

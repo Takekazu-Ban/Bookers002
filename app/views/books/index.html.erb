@@ -1,5 +1,17 @@
 <!-- Books -->
 
+<!-- 投稿・更新時にサクセスメッセージ表示 -->
+  <% if flash[:notice] %>
+    <div class = "flash">
+    <%= flash[:notice] %>
+    </div>
+
+    <% else %>
+     <div class = "flash">
+    <%= flash[:alert] %>
+    </div>
+  <% end %>
+
 <!-- プロフィール表示部分 -->
 <div class="profile">
   <h2>User info</h2>
@@ -22,20 +34,6 @@
 <!-- 新規投稿部分 -->
 <h2>New book</h2>
 <%= form_for(@book, url: '/books', method: :post) do |f| %>
-
-   <!-- 投稿・更新時にサクセスメッセージ表示 -->
-  <% if flash[:notice] %>
-    <div class = "flash">
-    <%= flash[:notice] %>
-    </div>
-  <% end %>
-
-  <!-- エラーメッセージ -->
-  <% if flash[:alesrt] %>
-   <div class = "flash">
-    <%= flash[:alert] %>
-    </div>
-  <% end %>
 
   <!-- タイトル記入 -->
   <h5>Title</h5>

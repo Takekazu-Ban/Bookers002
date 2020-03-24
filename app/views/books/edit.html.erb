@@ -1,23 +1,19 @@
-<!-- 未着手 -->
-<!-- 投稿確認画面 -->
-
-
-<h1>Editing Book 投稿確認</h1>
+<h2>Editing Book</h2>
 <%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
 
 	<p>Title</p>
 	<%= f.text_field :title %>
-	<p>Body</p>
+	<p>Opinion</p>
 	<%= f.text_area :body %>
-	<br><%= f.submit 'Update Book' %>
+	 <br><%= f.submit 'Update Book' %>
 
 <% end %>
 
 <!-- 編集画面にアクセス -->
 <%= link_to "Show", book_path(@book.id) %>
 |
-<!-- 投稿・一覧画面に戻る -->
-<%= link_to 'Back', '/books' %>
+<!-- Booksに戻る -->
+<%= link_to 'Back', books_path %>
 
 
 
@@ -29,11 +25,3 @@
 	</div>
 <% end %>
 
-
-<p> <%= @book.title %> <%= @book.body %> </p>
-
-<!-- 編集画面にアクセス -->
-<%= link_to "Edit", edit_book_path(@book.id) %>
-
-<!-- 削除 -->
-<%= link_to "Destroy",book_path(@book.id), method: :delete, "data-confirm" => "Are you sure?" %>

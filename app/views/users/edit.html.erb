@@ -1,17 +1,33 @@
 <!-- プロフィール編集画面 -->
 
+<!-- 投稿・更新時にサクセスメッセージ表示 -->
+  <% if flash[:notice] %>
+    <div class = "flash">
+    <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <!-- エラーメッセージ -->
+  <% if flash[:alesrt] %>
+   <div class = "flash">
+    <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+<h2>User info</h2>
 <%= form_for(@user) do |f| %>
 
 <!-- 名前編集 -->
 Name <%= f.text_field :name %>
 <br>
 <!-- プロフィール画像編集 -->
+Image<br>
 <%= f.attachment_field :profile_image %>
 <br>
 <!-- 自己紹介文 -->
 Introdoction <%= f.text_area :introduction %>
 <br>
 <!-- UPDATEボタン -->
-<%= f.submit "Update User",class:"btn btn-lg btn-block btn-base-1 mt-20" %>
+<%= f.submit "Update User" %>
 
 <% end %>

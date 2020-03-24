@@ -21,23 +21,25 @@ class BooksController < ApplicationController
     @books = Book.all
       ### 投稿時の条件分岐 ###
       # DBに保存
-  	 if @book.save
+  	  if @book.save
       # サクセスメッセージ表示
       flash[:notice] = "Book was successfully created."
   	  # 詳細ページへリダイレクト
   	  redirect_to  book_path(@book.id)
       else
-      @books = Book.all
-      flash[:alert] = "ERROR!!! can't be blank"
-      render :index
+      # エラーメッセージ表示
+      flash[:alert] = "error !!!"
+      redirect_to books_path(@book.id)
       end
 
-  end
+    end
 
   # 詳細ページ設定
   def show
     # 取得したURLを@bookに格納
     @book = Book.find(params[:id])
+    # ログイン時のユーザーデータを渡す
+    @user = current_user
   end
 
   # 編集ページ設定
@@ -45,27 +47,29 @@ class BooksController < ApplicationController
     # 取得したURLを@bookに格納
     @book = Book.find(params[:id])
   end
+
   # 編集を保存
   def update
     book = Book.find(params[:id]) #viewsを通らないので@を付けない
     # DBに上書き
-    book.update(book_params)
-
-    # 投稿確認画面へ移動
-    redirect_to edit_book_path(book.id)
-
+    if book.update(book_params)
     # 詳細ページへリダイレクト
-    #redirect_to  book_path(book.id)
+    redirect_to  book_path(book.id)
     # サクセスメッセージ表示
     flash[:notice] = "Book was successfully updated."
+      else
+        redirect_to  book_path(book.id)
+      # エラーメッセージ表示
+      flash[:alert] = "error !!!"
+    end
   end
 
   # 削除設定
   def destroy
     # データ（レコード）を１件取得
-    book = Book.find(params[:id])
+    @book = Book.find(params[:id])
     # データ（レコード）を削除
-    book.destroy
+    @book.destroy
     # 投稿・一覧画面へリダイレクト
     redirect_to books_path
   end
@@ -80,7 +84,7 @@ class BooksController < ApplicationController
 
   # 投稿データの受け取り
   def book_params
-  	params.require(:book).permit(:title, :body, :profile_image)
+  	params.require(:book).permit(:title, :body)
   end
 
 end
