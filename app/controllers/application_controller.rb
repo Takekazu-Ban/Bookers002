@@ -2,8 +2,8 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	protected
 		def configure_permitted_parameters
-			# sign_up時、nameのデータの操作を許可
-			devise_parameter_sanitizer.permit(:sign_up,keys:[:name])
+			# sign_up時、emailのデータの操作を許可（認証Keyをnameに変更してemailが反応しなっくなった為)
+			devise_parameter_sanitizer.permit(:sign_up,keys:[:email])
 			# sign_in時、nameのデータの操作を許可
 			devise_parameter_sanitizer.permit(:sign_in,keys:[:name])
 		end

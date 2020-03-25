@@ -1,84 +1,82 @@
 <!-- Users -->
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div class="col-sm-3">
 
-<!-- 投稿・更新時にサクセスメッセージ表示 -->
+  <!-- 投稿・更新時にサクセスメッセージ表示 -->
   <% if flash[:notice] %>
     <div class = "flash">
-    <%= flash[:notice] %>
+      <%= flash[:notice] %>
     </div>
-
     <% else %>
      <div class = "flash">
     <%= flash[:alert] %>
     </div>
   <% end %>
 
-<!-- プロフィール表示部分 -->
-<div class="profile">
-  <h2>User info</h2>
+    <!-- プロフィール表示部分 -->
+    <div class="profile">
+    <h2>User info</h2>
 
-  <!-- プロフィール画像 -->
-  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+      <!-- プロフィール画像 -->
+      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
 
-  <!-- 名前 -->
-  <br>
-  name <%= @user.name %>
-  <!-- 紹介文 -->
-  <br>
-  introduction  <%= @user.introduction %>
+        <table class="table table-striped">
+          <!-- 名前 -->
+          <td> name <%= @user.name %> </td>
+        </table>
+        <table class="table table-striped">
+          <!-- 紹介文 -->
+          <td> introduction <%= @user.introduction %> </td>
+        </table>
 
   <!-- 編集画面にアクセス -->
-  <br>
-  <%= link_to "プロフィール編集", edit_user_path(current_user.id) %>
+  <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
+      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <% end %>
 </div>
 
-
-
-
-
-<!-- 新規投稿部分 -->
-<h2>New book</h2>
-<!-- form_for部分 -->
-<%= form_for(@book, url: '/books', method: :post) do |f| %>
-
-  <!-- タイトル記入 -->
-  <h5>Title</h5>
-  <%= f.text_field :title %>
-
-  <!-- 本文記入 -->
-  <h5>Opinion</h5>
-  <%= f.text_area :body %>
-
-  <br><%= f.submit 'Create Book' %>
-<% end %>
-
-
-
-<!-- 一覧表示部分 -->
-<h2>Users</h2>
-<table>
-
-  <!-- 表のカラム -->
-  <thead>
-    <tr>
-      <th> image </th>
-      <th></th>
-      <th> name </th>
-    </tr>
-  </thead>
-
-  <!-- ユーザー情報 一覧 -->
-  <tbody>
-    <% @users.each do |user| %>
-    <tr>
-      <!-- プロフィール画像 -->
-      <td> <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class:"img-circle pull-left profile-image",fallback: "no_image.jpg" %> </td>
-      <th></th>
-      <!-- ユーザー名 -->
-      <td> <%= user.name %> </td>
-      <!-- ユーザー毎の詳細ボタン -->
-      <td> <%= link_to "Show",user_path(user.id) %> </td>
-    </tr>
+    <!-- 新規投稿部分 -->
+    <h2>New book</h2>
+    <!-- form_for部分 -->
+    <%= form_for(@book, url: '/books', method: :post) do |f| %>
+      <!-- タイトル記入 -->
+      <h5>Title</h5>
+      <%= f.text_field :title %>
+      <!-- 本文記入 -->
+      <h5>Opinion</h5>
+      <%= f.text_area :body %>
+      <br><%= f.submit 'Create Book' %>
     <% end %>
-  </tbody>
 
-</table>
+  </div>
+  <div class="col-sm-1"></div>
+  <div class="col-sm-7">
+
+    <!-- 一覧表示部分 -->
+    <h2>Users</h2>
+      <table class="table table-striped">
+        <!-- 見出し表示 -->
+            <tr>
+            <th> image </th>
+            <th> name </th>
+            <th></th>
+            </tr>
+
+    <!-- ユーザー情報 一覧 -->
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <!-- プロフィール画像 -->
+              <%= attachment_image_tag user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class:"img-circle pull-left profile-image",fallback: "no_image.jpg" %>
+            </td>
+            <!-- ユーザー名 -->
+            <td> <%= user.name %> </td>
+            <!-- ユーザー毎の詳細ボタン -->
+            <td> <%= link_to "Show",user_path(user.id) %> </td>
+          </tr>
+        <% end %>
+      </table>
+
+  </div>
+</div>

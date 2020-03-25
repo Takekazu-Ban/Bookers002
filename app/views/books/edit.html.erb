@@ -1,27 +1,31 @@
-<h2>Editing Book</h2>
-<%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
+<div class="row">
+  <div class="col-sm-4"></div>
 
-	<p>Title</p>
-	<%= f.text_field :title %>
-	<p>Opinion</p>
-	<%= f.text_area :body %>
-	 <br><%= f.submit 'Update Book' %>
+  	<div class="col-sm-8">
+	<h2>Editing Book</h2>
+		<%= form_for(@book, url:"/books/#{@book.id}") do |f| %>
 
-<% end %>
+		<p>Title</p>
+		<%= f.text_field :title %>
+		<p>Opinion</p>
+		<%= f.text_area :body %>
+	 	<br><%= f.submit 'Update Book' %>
 
-<!-- 編集画面にアクセス -->
-<%= link_to "Show", book_path(@book.id) %>
-|
-<!-- Booksに戻る -->
-<%= link_to 'Back', books_path %>
+	<% end %>
+
+	<!-- 編集画面にアクセス -->
+	<%= link_to "Show", book_path(@book.id) %>
+	|
+	<!-- Booksに戻る -->
+	<%= link_to 'Back', books_path %>
 
 
+	<!-- 投稿・更新時にサクセスメッセージ表示 -->
+	<% if flash[:notice] %>
+		<div class = "flash">
+			<%= flash[:notice] %>
+		</div>
+	<% end %>
 
-
-<!-- 投稿・更新時にサクセスメッセージ表示 -->
-<% if flash[:notice] %>
-	<div class = "flash">
-		<%= flash[:notice] %>
 	</div>
-<% end %>
-
+</div>

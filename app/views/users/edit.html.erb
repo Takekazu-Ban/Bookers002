@@ -1,18 +1,17 @@
 <!-- プロフィール編集画面 -->
-
-<!-- 投稿・更新時にサクセスメッセージ表示 -->
-  <% if flash[:notice] %>
-    <div class = "flash">
-    <%= flash[:notice] %>
-    </div>
-  <% end %>
-
-  <!-- エラーメッセージ -->
-  <% if flash[:alesrt] %>
-   <div class = "flash">
-    <%= flash[:alert] %>
-    </div>
-  <% end %>
+<div class="row">
+  <div class="col-sm-1"></div>
+    <div class="col-sm-3">
+    <!-- 投稿・更新時にサクセスメッセージ表示 -->
+    <% if flash[:notice] %>
+      <div class = "flash">
+        <%= flash[:notice] %>
+      </div>
+    <% else %>
+        <div class = "flash">
+          <%= flash[:alert] %>
+        </div>
+    <% end %>
 
 <h2>User info</h2>
 <%= form_for(@user) do |f| %>
@@ -31,3 +30,5 @@ Introdoction <%= f.text_area :introduction %>
 <%= f.submit "Update User" %>
 
 <% end %>
+</div>
+</div>

@@ -1,15 +1,38 @@
-<h1>welcome to Bookers !!</h1>
-<p>In Bookers,</p>
-<p>you can share and exchange your opinions , inpressions , and<br>emotions<br>
+<!-- Home -->
+<div class="row">
+	<div class="col-sm-12"></div>
+</div>
 
-about various books!</p>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-9">
+		<h2>welcome to <span class="glyphicon glyphicon-book" aria-hidden="true">Bookers!</span></h2>
+	</div>
+</div>
 
-	<li class="">
-        <%= link_to "新規登録", new_user_registration_path %>
-    </li>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-9">
+		In <span class="glyphicon glyphicon-book" aria-hidden="true">Bookers,</span>
 
-    <li class="">
-        <%= link_to "ログイン", new_user_session_path %>
-    </li>
+		<p>you can share and exchange your opinions , inpressions , and<br>emotions<br>
+		about various books!</p>
+	</div>
+</div>
 
-<p>CopyRight Infratop.inc</p>
+<div class="row">
+	<div class="col-sm-3"></div>
+	<div class="col-sm-9">
+		<h3>
+        <%= link_to new_user_registration_path, class:"btn btn-info" do %>新規登録<% end %>
+    	</h3>
+    	<h3>
+		<%= link_to new_user_session_path, class:"btn btn-success" do %>ログイン<% end %>
+		</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-7"></div>
+	<p>CopyRight Infratop.inc</p>
+</div>
