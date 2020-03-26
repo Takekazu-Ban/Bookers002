@@ -1,7 +1,7 @@
 <!-- Books -->
+<div class="container">
 <div class="row">
-  <div class="col-sm-1"></div>
-  <div class="col-sm-3">
+  <div class="col-xs-3">
 
   <!-- 投稿・更新時にサクセスメッセージ表示 -->
   <% if flash[:notice] %>
@@ -23,7 +23,7 @@
 
         <table class="table table-striped">
           <!-- 名前 -->
-          <td> name <%= @user.name %> </td>
+          <td> <p>name</p> <%= @user.name %> </td>
         </table>
         <table class="table table-striped">
           <!-- 紹介文 -->
@@ -42,7 +42,7 @@
     <%= form_for(@book, url: '/books', method: :post) do |f| %>
       <!-- タイトル記入 -->
       <h5>Title</h5>
-      <%= f.text_field :title %>
+        <%= f.text_field :title %>
       <!-- 本文記入 -->
       <h5>Opinion</h5>
       <%= f.text_area :body %>
@@ -50,8 +50,7 @@
     <% end %>
 
   </div>
-  <div class="col-sm-1"></div>
-  <div class="col-sm-7">
+  <div class="col-xs-9">
 
 
     <!-- 一覧表示部分 -->
@@ -71,10 +70,14 @@
         <td>
         <!-- プロフィール画像 -->
         <!-- アプリケーション2の6章参照 -->
-        <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+        <%= link_to user_path(current_user.id) do%>
+          <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+        <% end %>
         </td>
-        <!-- 本のタイトル -->
-        <td> <%= book.title %> </td>
+        <!-- 本のタイトル --><!--  <<<途中>>>  -->
+        <td>
+            <%= book.title %>
+        </td>
         <!-- 本の内容 -->
         <td> <%= book.body  %> </td>
       </tr>
@@ -97,4 +100,5 @@
   <% end %>
 
  </div>
+</div>
 </div>

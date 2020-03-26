@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_action :authenticate_user!
 # 投稿・一覧設定
   def index
     # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。

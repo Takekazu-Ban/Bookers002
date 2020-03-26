@@ -1,5 +1,17 @@
 # userプロフィール
 class UsersController < ApplicationController
+	before_action :authenticate_user!
+	before_action :fraud_prevntion, only: [:edit, :update]
+
+	# 不正アクセス防止
+	def fraud_prevntion
+		@user = User.find(params[:id])
+		unless current_user.id == @user.id
+			redirect_to user_path(current_user.id)
+		end
+
+	end
+
 	# 一覧
 	def index
 		# ログイン時のユーザーデータを渡す
@@ -48,6 +60,7 @@ class UsersController < ApplicationController
 	end
 
 private
+
 
 	# 投稿データの受け取り
   	def user_params

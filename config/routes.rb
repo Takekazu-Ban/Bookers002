@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get 'home/about' => 'homes#show'
 
+  get 'sign_up/:id' => 'devise/registrations#new'
+
 
   resources :books, only: [:create, :index, :show, :edit, :destroy, :update]
   resources :users, only: [:index, :show, :edit, :update]

@@ -11,6 +11,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
     <body>
+      <div class="continer">
 
         <% if user_signed_in? %>
           <nav class="navbar navbar-dark bg-info">
@@ -79,6 +80,6 @@
         <% end %>
 
       <%= yield %>  <!-- 画面の呼び出し -->
-
+      </div>
     </body>
 </html>
