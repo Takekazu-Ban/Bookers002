@@ -7,4 +7,8 @@ class Book < ApplicationRecord
 	# 本の感想を1〜200字までに指定
 	validates :body, length: 1..200
 
+
+
+
+
 end

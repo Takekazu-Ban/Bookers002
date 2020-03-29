@@ -23,7 +23,7 @@
 
         <table class="table table-striped">
           <!-- 名前 -->
-          <td> <p>name</p> <%= @user.name %> </td>
+          <td> name <%= @user.name %> </td>
         </table>
         <table class="table table-striped">
           <!-- 紹介文 -->
@@ -31,7 +31,7 @@
         </table>
 
   <!-- 編集画面にアクセス -->
-  <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
+  <%= link_to user_path(current_user.id), class:"btn btn-default" do %>
       <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
   <% end %>
 </div>
@@ -54,7 +54,7 @@
 
 
     <!-- 一覧表示部分 -->
-    <h2>Books</h2>
+      <h2>Books</h2>
       <table class="table table-striped">
         <!-- 見出し表示 -->
             <tr>
@@ -64,40 +64,29 @@
             </tr>
 
   <!-- 本文表示(全ユーザー) -->
-  <% if @user.id == current_user.id %>
-      <% @books.each do |book| %>
+      <% @books.each do |k| %>
       <tr>
         <td>
         <!-- プロフィール画像 -->
         <!-- アプリケーション2の6章参照 -->
-        <%= link_to user_path(current_user.id) do%>
-          <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
-        <% end %>
+
+          <%= link_to user_path(k.user) do %>
+            <%= attachment_image_tag k.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+          <% end %>
+
         </td>
-        <!-- 本のタイトル --><!--  <<<途中>>>  -->
+        <!-- 本のタイトル -->
         <td>
-            <%= book.title %>
+          <%= link_to book_path(k.id) do%>
+            <%= k.title %>
+          <% end %>
         </td>
         <!-- 本の内容 -->
-        <td> <%= book.body  %> </td>
+        <td> <%= k.body  %> </td>
+
+        </tr>
       </tr>
     <% end %>
-  <% else %>
-      <% @books.each do |book| %>
-      <tr>
-        <td>
-        <!-- プロフィール画像 -->
-            <!-- アプリケーション2の6章参照 -->
-            <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
-            </td>
-            <!-- 本のタイトル -->
-            <td> <%= book.title %> </td>
-            <!-- 本の内容 -->
-            <td> <%= book.body  %> </td>
-            </tr>
-            <% end %>
-            </table>
-  <% end %>
 
  </div>
 </div>

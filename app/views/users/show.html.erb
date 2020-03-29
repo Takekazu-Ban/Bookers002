@@ -1,20 +1,22 @@
 <!-- Home -->
+
+<!-- 投稿・更新時にサクセスメッセージ表示 -->
+    <% if flash[:notice] %>
+      <div class = "flash">
+        <%= flash[:notice] %>
+      </div>
+    <% else %>
+        <div class = "flash">
+          <%= flash[:alert] %>
+        </div>
+    <% end %>
+
+
+<!-- ログインユーザーと同様のとき -->
 <% if @user.id == current_user.id %>
-
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-
-    <!-- 投稿・更新時にサクセスメッセージ表示 -->
-    <% if flash[:notice] %>
-      <div class = "flash">
-        <%= flash[:notice] %>
-      </div>
-    <% else %>
-        <div class = "flash">
-          <%= flash[:alert] %>
-        </div>
-    <% end %>
 
     <!-- プロフィール表示部分 -->
     <div class="profile">
@@ -25,7 +27,7 @@
 
         <table class="table table-striped">
           <!-- 名前 -->
-          <td> <p>name</p> <%= @user.name %> </td>
+          <td> name <%= @user.name %> </td>
         </table>
         <table class="table table-striped">
           <!-- 紹介文 -->
@@ -33,7 +35,7 @@
         </table>
 
         <!-- 編集画面にアクセス -->
-          <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
+          <%= link_to edit_user_path(current_user.id) , class:"btn btn-lg mt-20" do %>
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
           <% end %>
     </div>
@@ -88,23 +90,11 @@
 </div>
 
 
+<!-- ログインユーザーと異なるとき -->
 <% else %>
-
-
 <div class="container">
   <div class="row">
     <div class="col-xs-3">
-
-    <!-- 投稿・更新時にサクセスメッセージ表示 -->
-    <% if flash[:notice] %>
-      <div class = "flash">
-        <%= flash[:notice] %>
-      </div>
-    <% else %>
-        <div class = "flash">
-          <%= flash[:alert] %>
-        </div>
-    <% end %>
 
     <!-- プロフィール表示部分 -->
     <div class="profile">
@@ -123,7 +113,7 @@
         </table>
 
         <!-- 編集画面にアクセス -->
-          <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
+          <%= link_to user_path(current_user.id), class:"btn btn-default" do %>
             <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
           <% end %>
     </div>
@@ -176,7 +166,6 @@
     </div>
   </div>
 </div>
-
 
 <% end %>
 

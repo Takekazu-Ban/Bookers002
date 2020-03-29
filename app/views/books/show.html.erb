@@ -1,94 +1,108 @@
+
+
+
 <!-- 投稿確認画面 -->
 <div class="container">
-<div class="row">
-  <div class="col-xs-3">
+  <div class="row">
+    <div class="col-xs-3">
 
-    <!-- 投稿・更新時にサクセスメッセージ表示 -->
-    <% if flash[:notice] %>
-      <div class = "flash">
-        <%= flash[:notice] %>
-      </div>
-    <% else %>
+      <!-- 投稿・更新時にサクセスメッセージ表示 -->
+      <% if flash[:notice] %>
+
+        <div class = "flash">
+          <%= flash[:notice] %>
+        </div>
+
+      <% else %>
+
         <div class = "flash">
           <%= flash[:alert] %>
         </div>
-    <% end %>
 
-<!-- プロフィール表示部分 -->
-<div class="profile">
-  <h2>User info</h2>
-
-    <!-- プロフィール表示部分 -->
-    <div class="profile">
-    <h2>User info</h2>
-
-      <!-- プロフィール画像 -->
-      <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
-
-        <table class="table table-striped">
-          <!-- 名前 -->
-          <td> <p>name</p> <%= @user.name %> </td>
-        </table>
-        <table class="table table-striped">
-          <!-- 紹介文 -->
-          <td> introduction <%= @user.introduction %> </td>
-        </table>
-
-  <!-- 編集画面にアクセス -->
-  <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
-      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
-  <% end %>
-  </div>
-</div>
+      <% end %>
 
 
-<!-- 新規投稿部分 -->
-<h2>New book</h2>
-<%= form_for(@book, url: '/books', method: :post) do |f| %>
 
-  <!-- タイトル記入 -->
-  <h5>Title</h5>
-  <%= f.text_field :title %>
+      <!-- プロフィール表示部分 -->
+      <div class="profile">
+        <h2>User info</h2>
 
-  <!-- 本文記入 -->
-  <h5>Opinion</h5>
-  <%= f.text_area :body %>
+        <!-- プロフィール画像 -->
+        <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
 
-  <br><%= f.submit 'Create Book' %>
-<% end %>
+          <table class="table table-striped">
+            <!-- 名前 -->
+            <td> name <%= @book.user.name %> </td>
+          </table>
 
-  </div>
-  <div class="col-xs-9">
+          <table class="table table-striped">
+            <!-- 紹介文 -->
+            <td> introduction <%= @book.user.introduction %> </td>
+          </table>
 
-<!-- 投稿確認表示 -->
-<h2>Book detail</h2>
-<table class="table table-striped">
-    <tr>
-      <td>
-        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
-        <br><br><br>
-                    <%= link_to  user_path(current_user.id) do%>
-        <%= @user.name %>
+          <!-- 編集画面にアクセス -->
+          <%= link_to edit_user_path(current_user.id), class:"btn btn-default" do %>
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+          <% end %>
+
+        </div>
+
+
+        <!-- 新規投稿部分 -->
+        <h2>New book</h2>
+        <%= form_for(@book, url: '/books', method: :post) do |f| %>
+
+        <!-- タイトル記入 -->
+        <h5>Title</h5>
+        <%= f.text_field :title %>
+
+        <!-- 本文記入 -->
+        <h5>Opinion</h5>
+        <%= f.text_area :body %>
+
+        <br><%= f.submit 'Create Book' %>
         <% end %>
-      </td>
 
-      <td> <%= @book.title %> </td>
-      <td> <%= @book.body %> </td>
+         </div>
 
-      <td>
+
+      <div class="col-xs-9">
+
+        <!-- 投稿確認表示 -->
+        <h2>Book detail</h2>
+        <table class="table table-striped">
+        <tr>
+          <td>
+            <%= attachment_image_tag @book.user, :profile_image, :fill, 60, 60, format: 'jpeg', size: '60x60', class: "img-circle pull-left profile-imge", fallback: "no_image.jpg" %>
+              <br><br><br>
+                  <%= link_to  user_path(@book.user) do%>
+                    <%= @book.user.name %>
+                  <% end %>
+          </td>
+
+          <td> <%= @book.title %> </td>
+          <td> <%= @book.body %> </td>
+
+<% if @book.user == current_user %>
+        <td>
         <!-- 編集画面にアクセス -->
         <%= link_to "Edit", edit_book_path(@book.id), class: "btn btn-success" %>
-      </td>
-      <td>
-        <!-- 削除 -->
-        <%= link_to "Destroy",book_path, class: "btn btn-danger", method: :delete, "data-confirm" => "Are you sure?" %>
-      </td>
+        </td>
 
-    </tr>
+        <td>
+          <!-- 削除 -->
+          <%= link_to "Destroy",book_path, class: "btn btn-danger", method: :delete, "data-confirm" => "Are you sure?" %>
+    </td>
+<% end %>
+  </tr>
 </table>
 
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
+
+
+
 
 

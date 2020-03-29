@@ -1,14 +1,25 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
+
+before_action :fraud_prevntion, only: [:edit, :update]
+
+  # 不正アクセス防止
+  def fraud_prevntion
+    @book = Book.find(params[:id])
+    unless current_user.id == @book.user.id
+      redirect_to books_path
+    end
+  end
+
 # 投稿・一覧設定
   def index
     # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成する。
     @book = Book.new
     # 全てのデータを取り出して、格納
     @books = Book.all
-
     # ログイン時のユーザーデータを渡す
     @user = current_user
+
     # 全てのデータを取り出して、格納
     @users = User.all
   end
@@ -39,8 +50,7 @@ class BooksController < ApplicationController
   def show
     # 取得したURLを@bookに格納
     @book = Book.find(params[:id])
-    # ログイン時のユーザーデータを渡す
-    @user = current_user
+
   end
 
   # 編集ページ設定
@@ -80,6 +90,7 @@ class BooksController < ApplicationController
     # 投稿・一覧設定へリダイレクト
     redirect_to books_path
   end
+
 
   private
 
