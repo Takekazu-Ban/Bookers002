@@ -10,15 +10,17 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
+
     <body>
       <div class="continer">
-
         <% if user_signed_in? %>
-          <nav class="navbar navbar-dark bg-info">
+
+             <nav class="navbar navbar-dark bg-info">
+
             <div class="container-fluid">
               <div class="navbar-header">
-
                 <h4> Bookers </h4>
+              </div>
 
                  <div class="navbar-right">
                 <!-- 自分の投稿 -->
@@ -42,17 +44,19 @@
                 </span>
               </div>
 
-              </div>
-            </div>
-          </nav>
+        </div>
+      </nav>
+
+
 
         <% else %>
-          <nav class="navbar navbar-dark bg-info">
+        <nav class="navbar navbar-dark bg-info">
             <div class="container-fluid">
               <div class="navbar-header">
-
                 <h4> Bookers </h4>
-                <div class="navbar-right">
+                </div>
+
+               <div class="navbar-right">
                   <!-- TOP画面 -->
                   <span class="glyphicon glyphicon-home" aria-hidden="true">
                     <%= link_to 'Home', root_path %>
@@ -74,9 +78,8 @@
                   </span>
                 </div>
 
-              </div>
             </div>
-          </nav>
+             </nav>
         <% end %>
 
       <%= yield %>  <!-- 画面の呼び出し -->

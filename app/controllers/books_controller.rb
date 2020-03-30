@@ -50,6 +50,7 @@ before_action :fraud_prevntion, only: [:edit, :update]
   def show
     # 取得したURLを@bookに格納
     @book = Book.find(params[:id])
+    @nil = Book.new
 
   end
 
